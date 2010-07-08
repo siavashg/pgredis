@@ -1,0 +1,9 @@
+T O D O
+-------
+* Configuration via GUC settings
+* Redis server reconnection (separate worker thread with keepalive/reconnections?)
+* Full support for the Redis API
+* Support for Redis 1.2+ aswell as 2+
+* Documentation
+* Offline caching to be applied when Redis comes back online?
+* Lots more..
