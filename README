@@ -1,23 +1,47 @@
 pgredis
 =======
+pgredis adds functionality to your PostgreSQL database to set and retrieve data from your Redis cache.
+This project is very much a work in progress and this documentation is thus very incomplete, this is
+due to change quite soon as the project progress.
+
 
 Requirements
 ------------
-* PostgreSQL with PGXS
+* PostgreSQL with PGXS (8.4 and 9.0devel tested)
 * Redis with CRedis (libcredis installed)
 
 
 Installation
 ------------
-Build pgredis from source and install it in your database by using the following commands:
+In order to use pgredis you need to build it from source and add it to either your database or for
+all databases in your PostgreSQL server. Install pgredis by using the below steps:
 
 1) make install
-2) In psql: BEGIN; \i <path to pgredis.sql as shown in make install output>; COMMIT;
+2) Add pgredis to your database using for a single database or the PostgreSQL server:
+	2.1) Per database using psql: 
+		BEGIN; 
+		\i <path to pgredis.sql as shown in make install output>; 
+		COMMIT;
+		SELECT pr_set_servet('<hostname[:port]>');
+	2.2) Per server in config: Add the following entries to your PostgreSQL configuration and 
+	     restart your postmaster process:
+		shared_preload_libraries = 'pgredis'
+		custom_variable_classes = 'pgredis'
+		pgredis.redis_server = <hostname[:port]>
+
+
+Usage
+-----
+pgredis expose an API based on stored procedures:
+
+SELECT pr_set_server(<hostname[:port]::TEXT>);
+SELECT pr_set(<key::TEXT>, <value::TEXT>, <expire::INTEGER>);
+SELECT pr_get(<key::TEXT>);
 
 
 Feedback
 --------
-Please send bugreports and patches to <daniel@hobbit.se>.
+Please send bugreports, patches and other flammable material to <daniel@hobbit.se>.
 
 
 License
@@ -27,7 +51,6 @@ See the LICENSE file for full license details.
 
 Authors
 -------
-pgredis was conceived, and is developed, by:
 Daniel Gustafsson <daniel@hobbit.se>
 Siavash Ghorbani
 William Tisäter
