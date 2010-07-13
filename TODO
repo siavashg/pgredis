@@ -1,9 +1,24 @@
 T O D O
 -------
-* Configuration via GUC settings
-* Redis server reconnection (separate worker thread with keepalive/reconnections?)
+
+Must-haves in order to release
+------------------------------
+* Full configuration via PostgreSQL GUC settings as well db API
+
 * Full support for the Redis API
-* Support for Redis 1.2+ aswell as 2+
+	+ Support for Redis 1.2+ aswell as 2+
+
 * Documentation
+
+* Support for mset/mget
+
+
+
+Nice-to-haves
+-------------
+* Sharding and support for multiple Redis servers
+
 * Offline caching to be applied when Redis comes back online?
-* Lots more..
+
+* Redis server reconnection (separate worker thread with keepalive/reconnections?)
+
