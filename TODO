@@ -1,8 +1,8 @@
 T O D O
 -------
 
-Must-haves in order to release
-------------------------------
+Must-haves for 1.0
+------------------
 * Full configuration via PostgreSQL GUC settings as well db API
 
 * Full support for the Redis API
@@ -10,7 +10,7 @@ Must-haves in order to release
 
 * Documentation
 
-* Support for mset/mget
+* Support for lists, sets and hashes
 
 
 

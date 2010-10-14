@@ -7,7 +7,7 @@ due to change quite soon as the project progress.
 
 Requirements
 ------------
-* PostgreSQL with PGXS (8.4 and 9.0devel tested)
+* PostgreSQL with PGXS (8.4 and 9.0 tested)
 * Redis with CRedis (libcredis installed)
 
 
@@ -27,14 +27,16 @@ all databases in your PostgreSQL server. Install pgredis by using the below step
 	     restart your postmaster process:
 		shared_preload_libraries = 'pgredis'
 		custom_variable_classes = 'pgredis'
-		pgredis.redis_server = <hostname[:port]>
+		pgredis.redis_server = <hostname[:port][:database]>
 
 
 Usage
 -----
 pgredis expose an API based on stored procedures:
 
-SELECT pr_set_server(<hostname[:port]::TEXT>);
+SELECT pr_set_server(<hostname[:port][:database]::TEXT>);
+SELECT pr_select_db(<db::INTEGER>);
+SELECT pr_set(<key::TEXT>, <value::TEXT>);
 SELECT pr_set(<key::TEXT>, <value::TEXT>, <expire::INTEGER>);
 SELECT pr_get(<key::TEXT>);
 
